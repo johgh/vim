@@ -17,11 +17,11 @@ cd ~
 # clean Vim files
 rm -Rf .vim .vimrc .viminfo .vimbackup .vimswap .vimundo .vimviews
 
-# get .vim dir and submodules
+# get .vim dir
 git clone https://github.com/johgh/vim .vim
-git submodule update --init --recursive
-# or
-git clone --recursive https://github.com/johgh/vim .vim
+
+# install plugins from command line
+vim +PluginInstall +qall
 
 # symlink .vimrc to $HOME
 ln -s $HOME/.vim/.vimrc .
@@ -73,14 +73,12 @@ cd fonts
 # Vim 7.3.584 with python2 support required
 # e.g.: https://launchpad.net/~kalakris/+archive/ubuntu/vim
 
-# add submodule and install recursive dependencies
-git submodule add https://github.com/Valloric/YouCompleteMe
-git submodule update --init --recursive
+# install with Vundle
 
 # install build packages and compile
 # (repeat this step if some YCM update requires it in the future)
 sudo apt-get install build-essential cmake python-dev
-./install.sh
+$HOME/.vim/bundle/YouCompleteMe/install.sh
 ```
 ### Wmctrl Installation
 ```
