@@ -18,10 +18,10 @@ cd ~
 rm -Rf .vim .vimrc .viminfo .vimbackup .vimswap .vimundo .vimviews
 
 # get .vim dir
-git clone https://github.com/johgh/vim .vim
+git clone --recursive https://github.com/johgh/vim .vim
 
 # install plugins from command line
-vim +PluginInstall +qall
+vim -E -u NONE -S ~/.vim/bundles.vim +PluginInstall +qall
 
 # symlink .vimrc to $HOME
 ln -s $HOME/.vim/.vimrc .
@@ -40,7 +40,6 @@ echo 'deb http://ppa.launchpad.net/pi-rho/dev/ubuntu UBUNTU_VERSION_HERE main' |
 # update and install gvim
 sudo apt-get update && sudo apt-get install vim vim-gnome
 ```
-UBUNTU_VERSION_HERE => Elementary 'Luna' is based on Ubuntu 'Precise'
 
 ### Install the "silversearcher" (required by Ag plugin)
 ```
