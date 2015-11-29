@@ -1,0 +1,7 @@
+/bundle/*
+!/bundle/Vundle.vim
+sessions
+.netrwhist
+/eclim/doc/tags
+tags
+spell

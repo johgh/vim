@@ -1,0 +1,227 @@
+" SETTINGS {
+    " syntax highlight
+    syntax enable
+    " indent according to filetype
+    filetype plugin indent on
+    " highlight sql strings in php
+    let php_sql_query=1
+    " highlight html strings in php
+    let php_htmlInStrings=1
+    " show current line and column and percentage within the buffer
+    set ruler
+    " show keys pressed while on operator pending mode
+    set showcmd
+    " show line numbers
+    set number
+    " set dark colorscheme/background
+    set background=dark
+    colorscheme ron
+    " allows hiding buffers with unsaved modifications
+    set hidden
+    " highlight last search
+    set hlsearch
+    " incremental searching
+    set incsearch
+    " set case insensitive mode
+    set ignorecase
+    " use case sensitive mode ONLY when some uppercase is given
+    set smartcase
+    " lines to scroll when cursor leaves screen
+    set scrolljump=5
+    " minimum lines to keep above and below cursor when executing command like a search
+    set scrolloff=5
+    " use indents of 4 spaces
+    set shiftwidth=4
+    " tabs are spaces, not tabs
+    set expandtab
+    " an indentation every four columns
+    set tabstop=4
+    " let backspace delete indent
+    set softtabstop=4
+    " round indent to the nearest multiple of shiftwidth
+    set shiftround
+    " unnamed plus register (supports system clipboard) set to default register instead of " register
+    set clipboard=unnamedplus
+    " Prevents inserting two spaces after punctuation after joining two lines
+    set nojoinspaces
+    " line breaking width
+    set textwidth=120
+    " visually mark column where line should break (according to textwidth)
+    set cc=+1
+    " show/hide special characters
+    set list
+    " special chars representation
+    set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+    " Windows can be 0 line high
+    set winminheight=0
+    " Show list instead of just completing
+    set wildmenu
+    " Command <Tab> completion, list matches, then longest common part, then all
+    set wildmode=list:longest,full
+    " start with folds closed
+    set foldlevel=0
+    " default working dir (if exists)
+    if !empty(glob("$HOME/workspace/"))
+    cd $HOME/workspace/
+    endif
+    " autochdir to the parent of the current file
+    set autochdir
+    " set virtualedit to block and insert mode
+    set ve=block
+    " visual bell effect
+    set visualbell
+    " don't beep
+    set noerrorbells
+    " automatic indentation when starting new line
+    set autoindent
+    " erase previous indent, move to previous line
+    set backspace=indent,eol,start
+    " Prevent the cursor from changing the current column when jumping
+    set nostartofline
+    " move to previous lines with cursors and h,l
+    " < > cursor keys used in normal and visual mode, [ ] cursor keys in insert mode
+    set whichwrap+=<,>,h,l,[,]
+    " shortens about every message to a minimum
+    set shm=at
+    " a <Tab> in front of a line inserts blanks according to 'shiftwidth'
+    set smarttab
+    " show status line even when only one window is shown
+    set laststatus=2
+    " minimal number of screen columns to keep to the left and to the right
+    set sidescrolloff=5
+    set display+=lastline
+    " set uft-8 encoding
+    if &encoding ==# 'latin1' && has('gui_running')
+    set encoding=utf-8
+    endif
+    " Delete comment character when joining commented lines
+    if v:version > 703 || v:version == 703 && has("patch541")
+    set formatoptions+=j
+    endif
+    " Automatically reload file when changed outside Vim (and the buffer in vim is unmodified)
+    set autoread
+    " set EOL supported formats
+    set fileformats+=mac
+    " set history limit
+    set history=1000
+    " max tab pages allowed
+    set tabpagemax=50
+    " Allow color schemes to do bright colors without forcing bold.
+    if &t_Co == 8 && $TERM !~# '^linux'
+    set t_Co=16
+    endif
+    " Load matchit.vim, but only if the user hasn't installed a newer version.
+    if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+    runtime! macros/matchit.vim
+    endif
+    " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+    " so that you can undo CTRL-U after inserting a line break.
+    inoremap <C-U> <C-G>u<C-U>
+    " keep an undo file (undo changes after closing)
+    set undofile
+    " set timeoutlen=2500
+" }
+
+" MAPPINGS {
+    " SHORTCUTS
+    " disable last search highlighting
+    nnoremap <silent> <C-L> :nohlsearch<CR>
+    " toggle to bind/unbind scroll in all windows
+    nmap <F6> :windo set scrollbind!<CR>
+    " alternate between line numbers and relative numbers
+    map <F10> :set relativenumber!<CR>
+    " pasting of multiple lines in insert mode without reindenting
+    set pastetoggle=<F12>
+    " search without regex
+    nnoremap / /\V
+
+    " REDEFINE MAPLEADER
+    let mapleader = ","
+
+    " BETTER MAPPING TO ESC KEY ON SPANISH KEYBOARD (EVEN BETTER THAN <C-C>)
+    imap ñ <esc>
+    cmap ñ <esc>
+    vmap ñ <esc>
+    " to insert ñ, use <c-q>ñ
+
+    " BUFFERS AND WINDOWS MAPPINGS
+    " To open a new empty buffer
+    nmap <leader>n :enew<cr>
+    " To open a new empty tab
+    nmap <leader>t :tabe<cr>
+    " never quit last window
+    map <silent> <leader>x :only<CR>:bd<CR>
+    " Close the current buffer and move to the previous one
+    nmap <silent> <leader><leader>q :bp <BAR> bd #<CR>
+    " Close the current buffer and move to the previous one
+    nmap <silent> <leader>Q :bp<bar>sp<bar>bn<bar>bd<CR>
+    " Go to previous visited buffer
+    nmap <leader><space> :b#<CR>
+    " Close aux windows
+    map <Leader>z :pclose<CR>:lclose<CR>:cclose<CR>
+    " Clear quickfix window and close
+    map <Leader>Z :cex []<CR>:ccl<CR>
+    " go to prev /next buffer
+    " go to prev /next tab
+    nmap <A-S-j> gt
+    nmap <A-S-k> gT
+    " go to left/right/up/down window
+    nmap <A-up> <C-w>k
+    nmap <A-down> <C-w>j
+    nmap <A-left> <C-w>h
+    nmap <A-right> <C-w>l
+
+    " SAVE MAPPINGS
+    " quick save
+    map <C-s> :w<CR>
+    vmap <C-s> <esc>:w<CR>gv
+    inoremap <C-s> <esc>:w<CR>
+    " force quick save
+    map <C-S> :w!<CR>
+    vmap <C-S> <esc>:w!<CR>gv
+    inoremap <C-S> <esc>:w!<CR>
+    " write file for when you forget to sudo
+    cmap w!! w !sudo tee % >/dev/null
+
+    " NORMAL MODE NAVIGATION
+    map <C-j> 4j
+    map <C-k> 4k
+    " down, up remapped to next/prev line in wrapped line
+    nnoremap <down> g<down>
+    nnoremap <up> g<up>
+
+    " NORMAL MODE COMMANDS
+    " visual mode till EOL (not included)
+    noremap vc v$h
+    " yank till EOL (not included)
+    noremap Y y$
+    " indent current paragraph (instead of ex mode)
+    " nnoremap Q =ip
+
+    " repeat last substitution with same flags
+    nnoremap & :&&<CR>
+    xnoremap & :&&<CR>
+
+    " COMMMAND LINE NAVIGATION
+    cnoremap <C-n> <down>
+    cnoremap <C-p> <up>
+
+    " COMMAND LINE EXPANSION
+    cnoremap <expr> ~~ getcmdtype() == ':' ? expand('%:h').'/' : '~~'
+    cnoremap <expr> ~ getcmdtype() == ':' ? expand('~').'/' : '~'
+
+    " COMMAND LINE DISPLAY
+    set shortmess=a
+" }
+
+" AUTOCOMMANDS {
+    augroup my_group_core
+        autocmd!
+        " don't put commentaries when opening and changing line
+        autocmd BufNewFile,BufRead * setlocal formatoptions=tcq
+
+        " When editing a file, always jump to the last known cursor position.
+        autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    augroup END
+" }
+
