@@ -685,6 +685,7 @@ source ~/.vim/.vimrc_core
 " map + <Plug>(expand_region_expand)
 map <A-+> <Plug>(expand_region_shrink)
 let g:expand_region_text_objects = {
+      \ 'i"'  :0,
       \ 'i''' :0,
       \ 'i]'  :1,
       \ 'ib'  :1,
