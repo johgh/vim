@@ -39,6 +39,7 @@ source ~/.vim/.vimrc_core
 " GENERAL SETTINGS {
     syntax enable
     set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+    nmap <RightMouse> <LeftMouse>*Nzz
 
     " CLIPBOARD {
         " unnamed plus register set to default register instead of " register
