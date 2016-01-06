@@ -75,6 +75,7 @@ Plugin 'idanarye/vim-merginal.git'
 Plugin 'terryma/vim-expand-region'
 Plugin 'terryma/vim-multiple-cursors.git'
 Plugin 'terryma/vim-smooth-scroll'
+Plugin 'vim-scripts/YankRing.vim'
 
 call vundle#end()
 filetype plugin indent on

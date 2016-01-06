@@ -211,7 +211,7 @@
     cnoremap <expr> ~ getcmdtype() == ':' ? expand('~').'/' : '~'
 
     " COMMAND LINE DISPLAY
-    set shortmess=a
+    set shortmess=aI
 " }
 
 " AUTOCOMMANDS {

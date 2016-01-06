@@ -60,11 +60,11 @@ source ~/.vim/.vimrc_core
         cnoremap <C-v> <C-r>+
 
         " easy yank appending with 'gy'
-        nnoremap <silent> gy :let @h=@+<CR>"Hyy:let @+=@h<CR>
+        nnoremap <silent> gy :let @u=@+<CR>"Uyy:let @+=@u<CR>
         vnoremap <silent> gy :normal gy<CR>
 
         " swap unnamed register with alt "yank register" @p
-        nnoremap <F11> :let @h=@+ \| let @+=@p \| let @p=@h <CR>
+        " nnoremap <F11> :let @u=@+ \| let @+=@p \| let @p=@u <CR>
 
     " }
 " }
@@ -721,6 +721,11 @@ let g:expand_region_text_objects = {
     noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
     noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
     noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+" }
+
+" YANK-RING
+    nnoremap <silent> <F11> :YRShow<CR>
+    let g:yankring_replace_n_nkey = '<C-M>'
 " }
 
 " enable debug mode
