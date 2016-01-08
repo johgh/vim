@@ -725,7 +725,7 @@ let g:expand_region_text_objects = {
 
 " YANK-RING
     nnoremap <silent> <F11> :YRShow<CR>
-    let g:yankring_replace_n_nkey = '<C-M>'
+    let g:yankring_replace_n_nkey = '<C-Y>'
 " }
 
 " enable debug mode
