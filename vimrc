@@ -4,7 +4,7 @@ set nocompatible
 silent! runtime bundles.vim
 
 " core stuff
-source ~/.vim/.vimrc_core
+source ~/.vim/vimrc_core
 
 " COLORSCHEME/LAYOUT {
     " GVIM {
@@ -17,7 +17,6 @@ source ~/.vim/.vimrc_core
     " highlight cursor line
     set cursorline
 
-    set background=dark
     if has('gui_running')
         colorscheme gruvbox
         let hour = strftime("%H")
@@ -32,6 +31,10 @@ source ~/.vim/.vimrc_core
         set lsp=-2
         " hide mouse when typing
         set mousehide
+    else
+        se t_Co=256
+        colorscheme solarized
+        set background=dark
     endif
 
 " }
@@ -71,20 +74,16 @@ source ~/.vim/.vimrc_core
 
 " MAPPINGS {
     " INIT
-    " fix gnome terminal problem with alt keys
-    " set ek 
-    " let c='a'
-    " while c <= 'z'
-    " exec "set <A-".c.">=\e".c
-    " exec "imap \e".c." <A-".c.">"
-    " let c = nr2char(1+char2nr(c))
-    " endw
-    " let c='A'
-    " while c <= 'Z'
-    " exec "set <A-".c.">=\e".c
-    " exec "imap \e".c." <A-".c.">"
-    " let c = nr2char(1+char2nr(c))
-    " endw
+    " fix gnome terminal problem with alt keys (a-z only)
+    set esckeys
+    let c='a'
+    while c <= 'z'
+        exec "set <A-".c.">=\e".c
+        exec "imap \e".c." <A-".c.">"
+        let c = nr2char(1+char2nr(c))
+    endw
+    set ttimeout ttimeoutlen=50
+
 
     " NORMAL MODE COMMANDS
     " add indented blank line and leave insert mode
@@ -635,7 +634,7 @@ source ~/.vim/.vimrc_core
     map <Leader><F8> :silent %!xmllint --encode UTF-8 --format - <CR>
 
     " opens .vimrc and sets pwd to .vim
-    map <C-F12> :e ~/.vim/.vimrc<CR>
+    map <C-F12> :e ~/.vim/vimrc<CR>
 
     " save and reload firefox current tab
     map <leader>f :silent !WID=`xdotool search --name "Mozilla Firefox" \| head -1`; xdotool windowactivate $WID > /dev/null 2>&1 ; xdotool key F5 > /dev/null 2>&1<CR> \ | execute ':redraw!'
