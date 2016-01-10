@@ -33,7 +33,7 @@ source ~/.vim/vimrc_core
         set mousehide
     else
         se t_Co=256
-        colorscheme solarized
+        colorscheme gruvbox
         set background=dark
     endif
 
