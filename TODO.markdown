@@ -1,7 +1,3 @@
-# pending
-* ver para que sirve c-u de bram
-* autocompletar fail (da error 'returned bad value to YCM' mirar quitar silenciado para leer) -> no se ha sabido pq falló
-
 # regexes
 \<WORD\>
 \$\_POST\[(.*)\]     -->    \$this\-\>request\-\>get\_POST(\1)
@@ -21,9 +17,8 @@ dvj - characterwise
 dVj - linewise
 d<C-v>j - blockwise
 ```
-### IDEAS PARA MAPEOS
 
-### listado plugins (tb ver vimawesome.com)
+### listado plugins
 #### Javascript
 * https://github.com/elzr/vim-json
 * https://github.com/groenewege/vim-less
