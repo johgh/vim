@@ -684,32 +684,34 @@ source ~/.vim/vimrc_core
 " VIM-EXPAND-REGION
 " map + <Plug>(expand_region_expand)
 map <A-+> <Plug>(expand_region_shrink)
+
+" Default settings. (NOTE: Remove comments in dictionary before sourcing)
+" let g:expand_region_text_objects = {
+"       \ 'iw'  :0,
+"       \ 'iW'  :0,
+"       \ 'i"'  :0,
+"       \ 'i''' :0,
+"       \ 'i]'  :1, " Support nesting of square brackets
+"       \ 'ib'  :1, " Support nesting of parentheses
+"       \ 'iB'  :1, " Support nesting of braces
+"       \ 'il'  :0, " 'inside line'. Available through https://github.com/kana/vim-textobj-line
+"       \ 'ip'  :0,
+"       \ 'ie'  :0, " 'entire file'. Available through https://github.com/kana/vim-textobj-entire
+"       \ }
+
 let g:expand_region_text_objects = {
-      \ 'i"'  :0,
-      \ 'i''' :0,
+      \ 'iq'  :1,
+      \ 'aq'  :1,
       \ 'i]'  :1,
       \ 'ib'  :1,
       \ 'iB'  :1,
-      \ "\/\\n\\n\<CR>": 1,
       \ 'a]' :1,
       \ 'ab' :1,
       \ 'aB' :1,
-      \ 'ii' :0,
-      \ 'ai' :0,
-      \ 'il'  :0,
-      \ 'ip'  :0,
+      \ 'i>' :1,
+      \ 'a>' :1,
       \ 'ie'  :0,
       \ }
-
-" call expand_region#custom_text_objects({
-"       \ "\/\\n\\n\<CR>": 1,
-"       \ 'a]' :1,
-"       \ 'ab' :1,
-"       \ 'aB' :1,
-"       \ 'ii' :0,
-"       \ 'ai' :0,
-"       \ })
-" }
 
 " VIM-MULTIPLE-CURSORS
     set selection=inclusive
