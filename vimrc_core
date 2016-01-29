@@ -127,13 +127,24 @@
     " disable last search highlighting
     nnoremap <silent> <C-L> :nohlsearch<CR>
     " toggle to bind/unbind scroll in all windows
-    nmap <F6> :windo set scrollbind!<CR>
+    nmap <C-F6> :windo set scrollbind!<CR>
+    " toggle diff on/off
+    map <F6> :call DiffToggle()<CR>
+
+    function! DiffToggle()
+        if &diff
+            windo diffoff
+        else
+            windo diffthis
+        endif
+    endfunction
+
     " alternate between line numbers and relative numbers
     map <F10> :set relativenumber!<CR>
     " pasting of multiple lines in insert mode without reindenting
     set pastetoggle=<F12>
     " search without regex
-    nnoremap / /\V
+    nnoremap <A-/> /\V
 
     " REDEFINE MAPLEADER
     let mapleader = ","
