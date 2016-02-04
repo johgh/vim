@@ -55,8 +55,7 @@ source ~/.vim/vimrc_core
         vnoremap p pgvy
 
         " don't save in default register when executing a 'c' command
-        nnoremap c "_c
-        " nnoremap C "_C
+        " nnoremap c "_c
 
         " paste default register in insert mode and command mode
         inoremap <C-v> <C-r>+
@@ -143,8 +142,8 @@ source ~/.vim/vimrc_core
 
     " avoid autoclean lines (eclipse-like), and don't save in default register with cc
     inoremap <CR> <CR><space><BS>
-    nnoremap cc "_cc<space><BS>
-    nnoremap C "_C<space><BS>
+    " nnoremap cc "_cc<space><BS>
+    " nnoremap C "_C<space><BS>
 
     " delete in insert mode (only works in gvim)
     inoremap <C-BS> <delete>
@@ -411,7 +410,7 @@ source ~/.vim/vimrc_core
     " }
 
     " NERDTREE {
-        map Q <leader>cd:silent NERDTreeToggle<CR>
+        map Q :silent NERDTreeCWD<CR>
     " }
 
     " TAGBAR {
@@ -481,6 +480,7 @@ source ~/.vim/vimrc_core
         set diffopt+=vertical
         nnoremap <F7> :Gstatus<CR>
         nnoremap <F8> :Gdiff<CR>
+        autocmd BufReadPost fugitive://* set bufhidden=delete
         nnoremap <C-F7> :!~/bin/ansbot '*?assword*' "$GIT_PASS" ''/usr/bin/git r''<CR>
         nnoremap <C-F8> :!~/bin/ansbot '*?assword*' "$GIT_PASS" ''/usr/bin/git p''<CR>
         " :set winheight=20<CR>
@@ -708,8 +708,8 @@ let g:expand_region_text_objects = {
       \ 'a]' :1,
       \ 'ab' :1,
       \ 'aB' :1,
-      \ 'i>' :1,
-      \ 'a>' :1,
+      \ 'i>' :0,
+      \ 'a>' :0,
       \ 'ie'  :0,
       \ }
 
@@ -727,6 +727,8 @@ let g:expand_region_text_objects = {
 " YANK-RING
     nnoremap <silent> <F11> :YRShow<CR>
     let g:yankring_replace_n_nkey = '<C-Y>'
+    " to allow nnoremap Y y$ mapping
+    let g:yankring_n_keys = 'D x X'
 " }
 
 " enable debug mode
