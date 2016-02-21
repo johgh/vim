@@ -60,11 +60,10 @@ $phpCodeSnifferConfig = array (
 ?>
 ```
 
-### Powerline Fonts Install
+### Nerd-fonts Install
 ```
-git clone https://github.com/powerline/fonts
-cd fonts
-./install
+cp -R ~/.vim/fonts/* ~/.local/share/fonts
+fc-cache -f ~/.local/share/fonts
 ```
 
 ### Ycm Plugin Installation
