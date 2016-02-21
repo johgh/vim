@@ -26,7 +26,8 @@ source ~/.vim/vimrc_core
         else
             set background=dark
         endif
-        set guifont=Source\ Code\ Pro\ for\ Powerline\ Semi-Bold\ 11
+        " set guifont=Source\ Code\ Pro\ for\ Powerline\ Semi-Bold\ 11
+        set guifont=Sauce\ Code\ Pro\ Medium\ 10
         " set less linespace is a must for source code pro font
         set lsp=-2
         " hide mouse when typing
