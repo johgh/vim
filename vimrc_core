@@ -200,6 +200,8 @@
     " down, up remapped to next/prev line in wrapped line
     nnoremap <down> g<down>
     nnoremap <up> g<up>
+    " go to last change in file
+    nmap - `.
 
     " NORMAL MODE COMMANDS
     " visual mode till EOL (not included)

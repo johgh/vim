@@ -714,6 +714,7 @@ let g:expand_region_text_objects = {
       \ 'i>' :0,
       \ 'a>' :0,
       \ 'it' :1,
+      \ 'iT' :0,
       \ 'ie' :0,
       \ }
 
@@ -737,7 +738,7 @@ let g:expand_region_text_objects = {
 
 call textobj#user#plugin('twig', {
 \   'code': {
-\     'pattern': ['{%.*%}', '{%.*%}'],
+\     'pattern': ['%}', '{%'],
 \     'select-a': 'aT',
 \     'select-i': 'iT',
 \   },
