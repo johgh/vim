@@ -43,7 +43,9 @@ source ~/.vim/vimrc_core
 " GENERAL SETTINGS {
     syntax enable
     set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-    nmap <RightMouse> <LeftMouse>*Nzz
+    nmap <RightMouse> <LeftMouse>"uyiwh/u<CR>
+    vmap <RightMouse> *N
+    " vmap <MiddleMouse> <C-n>
 
     " CLIPBOARD {
         " unnamed plus register set to default register instead of " register
@@ -732,6 +734,14 @@ let g:expand_region_text_objects = {
     " to allow nnoremap Y y$ mapping
     let g:yankring_n_keys = 'D x X'
 " }
+
+call textobj#user#plugin('twig', {
+\   'code': {
+\     'pattern': ['{%.*%}', '{%.*%}'],
+\     'select-a': 'aT',
+\     'select-i': 'iT',
+\   },
+\ })
 
 " enable debug mode
 " set vbs=1
