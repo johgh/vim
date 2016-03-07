@@ -184,13 +184,13 @@
 
     " SAVE MAPPINGS
     " quick save
-    map <C-s> :w<CR>
-    vmap <C-s> <esc>:w<CR>gv
-    inoremap <C-s> <esc>:w<CR>
+    map <silent> <C-s> :w<CR>:SyntasticCheck<CR>
+    vmap <silent> <C-s> <esc>:w<CR>:SyntasticCheck<CR>gv
+    inoremap <silent> <C-s> <esc>:w<CR>:SyntasticCheck<CR>
     " force quick save
-    map <C-S> :w!<CR>
-    vmap <C-S> <esc>:w!<CR>gv
-    inoremap <C-S> <esc>:w!<CR>
+    map <silent> <C-S> :w!<CR>:SyntasticCheck<CR>
+    vmap <silent> <C-S> <esc>:w!<CR>:SyntasticCheck<CR>gv
+    inoremap <silent> <C-S> <esc>:w!<CR>:SyntasticCheck<CR>
     " write file for when you forget to sudo
     cmap w!! w !sudo tee % >/dev/null
 
