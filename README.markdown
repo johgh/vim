@@ -46,12 +46,12 @@ sudo apt-get update && sudo apt-get install vim vim-gnome
 sudo apt-get install silversearcher-ag
 ```
 
-### Install and configure PHPCodeSniffer (PSR2 support)
+### Install and configure PHPCodeSniffer (required by Syntastic plugin)
 ```
 sudo apt-get install php-codesniffer
 ```
 
-On file /etc/php-codesniffer/CodeSniffer.conf put this:
+On file /etc/php-codesniffer/CodeSniffer.conf put this for PSR2 support (PHP code style standard):
 ```
 <?php
 $phpCodeSnifferConfig = array (
@@ -155,7 +155,3 @@ $ cd thirdparty/
 $ java -Dvim.skip=true -Declipse.home=/opt/eclipse -jar eclim_2.3.4.jar install
 ```
 > Check if PDT feature is installed on eclim startup, if not, reinstall in GUI mode (double click .jar file) then select 'do not install Vim files' and install pdt features when asked
-
-## Why do I use Vim?
-[The answer (in spanish)](http://cheat-sheets.tk/Vim-incomprendido/)
-
