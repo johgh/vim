@@ -41,6 +41,9 @@ source ~/.vim/vimrc_core
 " }
 
 " GENERAL SETTINGS {
+    set title
+    set titlestring=%F\ %a%r%m
+
     syntax enable
     set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
     nmap <RightMouse> <LeftMouse>"uyiwh/u<CR>
@@ -56,6 +59,9 @@ source ~/.vim/vimrc_core
 
         " paste yanked text multiple times in visual mode (trick lost -> exchange)
         vnoremap p pgvy
+
+        " paste correctly indented on same line
+        map <a-P> V<a-p>
 
         " don't save in default register when executing a 'c' command
         " nnoremap c "_c
@@ -336,8 +342,6 @@ source ~/.vim/vimrc_core
 
     " ECLIM {
         if exists('g:eclim')
-            set title
-            set titlestring=%F\ %a%r%m\ -\ Vim
             map <Leader><F2> :call ProjTree()<CR>
 
             function! ProjTree()
@@ -577,7 +581,7 @@ source ~/.vim/vimrc_core
     " }
 
     " VIMPASTA {
-        let g:pasta_paste_before_mapping = '<a-P>'
+        " let g:pasta_paste_before_mapping = '<a-P>'
         let g:pasta_paste_after_mapping = '<a-p>'
     " }
 
