@@ -179,8 +179,10 @@ source ~/.vim/vimrc_core
 
     " autocompletion
     " inoremap <C-p> <C-X><C-O>
-    " imap <C-CR> -><C-space>
     imap <C-CR> ->
+
+    " writing
+    imap î <C-q>ñ
 " }
 
 " AUTOCOMMANDS {
