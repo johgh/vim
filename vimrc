@@ -200,10 +200,12 @@ source ~/.vim/vimrc_core
         autocmd FileType php autocmd BufWritePre <buffer> call StripWhitespace('keep_whitespace_only_lines')
         autocmd FileType vim autocmd BufWritePre <buffer> call StripWhitespace('strip_only_space_only_lines')
         autocmd FileType sh autocmd BufWritePre <buffer> call StripWhitespace('all')
-        autocmd BufRead,BufNewFile *.html.twig set textwidth=0
-        autocmd BufRead,BufNewFile *.markdown set wrap linebreak nolist textwidth=0 nonumber
-        autocmd BufRead,BufNewFile *.md set wrap linebreak nolist textwidth=0 nonumber
-        autocmd BufRead,BufNewFile *.txt set wrap linebreak nolist textwidth=0 nonumber
+        " no wrap and never break line automatically, just show the margin (textwidth). This is default for all files, exceptions below
+        autocmd BufEnter,BufRead,BufNewFile * set nowrap textwidth=120 list formatoptions=l number guifont=Sauce\ Code\ Pro\ 10.5
+        " wrap lines only on space (linebreak), don't auto break and don't show margin
+        autocmd BufEnter,BufRead,BufNewFile *.markdown set wrap linebreak nolist textwidth=0 nonumber guifont=Latin\ Modern\ Mono\ 12
+        autocmd BufEnter,BufRead,BufNewFile *.md set wrap linebreak nolist textwidth=0 nonumber guifont=Latin\ Modern\ Mono\ 12
+        autocmd BufEnter,BufRead,BufNewFile *.txt set wrap linebreak nolist textwidth=0 nonumber guifont=Latin\ Modern\ Mono\ 12
 
         " For your list of filetypes where you want Eclim semantic completion 
         " as the default YCM completion mode:
@@ -451,7 +453,7 @@ source ~/.vim/vimrc_core
     " SYNTASTIC {
         nnoremap <F9> :SyntasticCheck<CR>
         set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
+        " set statusline+=%{SyntasticStatuslineFlag()}
         set statusline+=%*
 
         let g:syntastic_auto_loc_list = 2

@@ -120,9 +120,9 @@
     " keep an undo file (undo changes after closing)
     set undofile
     " set timeoutlen=2500
-" }
+    " }
 
-" MAPPINGS {
+    " MAPPINGS {
     " SHORTCUTS
     " disable last search highlighting
     nnoremap <silent> <C-L> :nohlsearch<CR>
@@ -233,7 +233,7 @@
     cnoremap <expr> ~ getcmdtype() == ':' ? expand('~').'/' : '~'
 
     " COMMAND LINE DISPLAY
-    set shortmess=aI
+    set shortmess=aItA
 " }
 
 " AUTOCOMMANDS {
