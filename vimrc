@@ -58,13 +58,14 @@ source ~/.vim/vimrc_core
         set previewheight=20
 
         " paste yanked text multiple times in visual mode (trick lost -> exchange)
+        " not working!! plugin problem?
         vnoremap p pgvy
 
         " paste correctly indented on same line
         map <a-P> V<a-p>
 
         " don't save in default register when executing a 'c' command
-        " nnoremap c "_c
+        nnoremap c "_c
 
         " paste default register in insert mode and command mode
         inoremap <C-v> <C-r>+
@@ -745,7 +746,7 @@ let g:expand_region_text_objects = {
 " }
 
 " YANK-RING
-    nnoremap <silent> <F11> :YRShow<CR>
+    nnoremap <silent> <c-p> :YRShow<CR>
     let g:yankring_replace_n_nkey = '<C-Y>'
     " to allow nnoremap Y y$ mapping
     let g:yankring_n_keys = 'D x X'
