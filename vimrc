@@ -746,7 +746,7 @@ let g:expand_region_text_objects = {
 " }
 
 " YANK-RING
-    nnoremap <silent> <c-p> :YRShow<CR>
+    nnoremap <silent> <f2> :YRShow<CR>
     let g:yankring_replace_n_nkey = '<C-Y>'
     " to allow nnoremap Y y$ mapping
     let g:yankring_n_keys = 'D x X'
