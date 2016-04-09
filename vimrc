@@ -57,9 +57,8 @@ source ~/.vim/vimrc_core
         " :Gstatus uses the preview window
         set previewheight=20
 
-        " paste yanked text multiple times in visual mode (trick lost -> exchange)
-        " not working!! plugin problem?
-        vnoremap p pgvy
+        " paste yanked text multiple times in visual mode (trick lost -> exchange) problem with yankring, replaced by YRRunAfterMaps function
+        " vnoremap p pgvy
 
         " paste correctly indented on same line
         map <a-P> V<a-p>
@@ -370,8 +369,9 @@ source ~/.vim/vimrc_core
             nnoremap <C-F4> <C-t>
 
             " let g:EclimCompletionMethod = 'omnifunc'
-            let g:EclimPhpValidate = 0
-            let g:EclimFileTypeValidate = 0
+
+            " disabled by default, so syntastic can work
+            " let g:EclimPhpValidate = 1
         else
             nnoremap <F3> :cex []<CR><C-]>
             nnoremap <F4> <C-t>
@@ -750,6 +750,14 @@ let g:expand_region_text_objects = {
     let g:yankring_replace_n_nkey = '<C-Y>'
     " to allow nnoremap Y y$ mapping
     let g:yankring_n_keys = 'D x X'
+
+    function! YRRunAfterMaps()
+        " Make Y yank to end of line.
+        nnoremap Y :<C-U>YRYankCount 'y$'<CR>
+
+        " Don't clobber the yank register when pasting over text in visual mode.
+        vnoremap p :<c-u>YRPaste 'p', 'v'<cr>gv:YRYankRange 'v'<cr>
+    endfunction
 " }
 
 call textobj#user#plugin('twig', {

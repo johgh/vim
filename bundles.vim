@@ -83,12 +83,15 @@ call vundle#end()
 filetype plugin indent on
 " }
 
-" DISABLE PLUGINS {
+" ENABLE PLUGINS {
     let g:phpcomplete = 1
     " let g:phpcomplete_extended = 1
     " let g:eclim = 1
 
     if !exists('g:eclim')
-        let g:EclimDisable = 1
+        " disabled by default, so syntastic can work
+        let g:EclimFileTypeValidate = 0
+        " disable Eclim
+        exec ":EclimDisable"
     endif
 " }
