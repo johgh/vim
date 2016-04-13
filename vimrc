@@ -48,6 +48,8 @@ source ~/.vim/vimrc_core
     set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
     nmap <RightMouse> <LeftMouse>"uyiwh/u<CR>
     vmap <RightMouse> *N
+    nmap <LeftMouse> <LeftMouse><C-l>
+    vmap <LeftMouse> <LeftMouse><C-l>
     " vmap <MiddleMouse> <C-n>
 
     " CLIPBOARD {
@@ -65,6 +67,7 @@ source ~/.vim/vimrc_core
 
         " don't save in default register when executing a 'c' command
         nnoremap c "_c
+        nnoremap C "_C
 
         " paste default register in insert mode and command mode
         inoremap <C-v> <C-r>+
@@ -452,7 +455,7 @@ source ~/.vim/vimrc_core
         let g:tagbar_singleclick = 1
     " }
     " SYNTASTIC {
-        nnoremap <F9> :SyntasticCheck<CR>
+        " nnoremap <F9> :SyntasticCheck<CR>
         set statusline+=%#warningmsg#
         " set statusline+=%{SyntasticStatuslineFlag()}
         set statusline+=%*
@@ -497,8 +500,9 @@ source ~/.vim/vimrc_core
 
     " FUGITIVE {
         set diffopt+=vertical
-        nnoremap <F7> :Gstatus<CR>
-        nnoremap <F8> :Gdiff<CR>
+        nnoremap <F7> :only<CR>:Gstatus<CR>
+        nnoremap <F8> :only<CR>:Gdiff<CR>
+        nnoremap <F9> :only<CR>:Gedit HEAD~0<CR>
         autocmd BufReadPost fugitive://* set bufhidden=delete
         nnoremap <C-F7> :!~/bin/ansbot '*?assword*' "$GIT_PASS" ''/usr/bin/git r''<CR>
         nnoremap <C-F8> :!~/bin/ansbot '*?assword*' "$GIT_PASS" ''/usr/bin/git p''<CR>
