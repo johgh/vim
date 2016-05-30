@@ -2,3 +2,4 @@
 option:ctags_params="--fields=+aimS --languages=PHP,Javascript,HTML,Sh"
 
 ~/workspace
+~/git

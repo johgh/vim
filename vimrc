@@ -162,11 +162,11 @@ source ~/.vim/vimrc_core
 
     " smartwords mappings
     " noremap ÷ w
-    map × <Plug>(smartword-w)
+    map ÷ <Plug>(smartword-w)
     " noremap â b
-    map Â <Plug>(smartword-b)
-    map <silent> ÷ <Plug>CamelCaseMotion_w
-    map <silent> â <Plug>CamelCaseMotion_b
+    map â <Plug>(smartword-b)
+    map <silent> × <Plug>CamelCaseMotion_w
+    map <silent> Â <Plug>CamelCaseMotion_b
     " map <Leader><Leader>e <Plug>(smartword-e)
     " map <Leader><Leader>ge <Plug>(smartword-ge)
 
@@ -198,7 +198,7 @@ source ~/.vim/vimrc_core
         " autocmd InsertLeave * set relativenumber
 
         " documentor
-        autocmd BufRead,BufNewFile *.php nnoremap <buffer> <Leader>c :call pdv#DocumentWithSnip()<CR>
+        autocmd BufRead,BufNewFile *.php nnoremap <buffer> <Leader>ds :call pdv#DocumentWithSnip()<CR>
 
         autocmd FileType php autocmd BufWritePre <buffer> call StripWhitespace('keep_whitespace_only_lines')
         autocmd FileType vim autocmd BufWritePre <buffer> call StripWhitespace('strip_only_space_only_lines')
@@ -684,6 +684,7 @@ source ~/.vim/vimrc_core
 
     let g:ctrlspace_save_workspace_on_exit = 1
 
+    " nmap <C-space> :CtrlSpace /<CR>
     nmap <C-S-space> :CtrlSpace a<CR>
     nmap <S-space> :CtrlSpace *<CR>
 
