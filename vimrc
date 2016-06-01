@@ -44,6 +44,9 @@ source ~/.vim/vimrc_core
     set title
     set titlestring=%F\ %a%r%m
 
+    set number
+    set relativenumber
+
     syntax enable
     set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
     nmap <RightMouse> <LeftMouse>"uyiwh/u<CR>
@@ -116,6 +119,7 @@ source ~/.vim/vimrc_core
     imap <C-e> <C-o>A
     imap <C-b> <C-o>I
     imap <C-k> <C-o>D
+    imap ; ;<esc>
 
     " COMMMAND LINE NAVIGATION
     cnoremap <C-b>  <Home>
@@ -194,8 +198,8 @@ source ~/.vim/vimrc_core
         " maximize at startup
         autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -b add,maximized_vert,maximized_horz")
         " hybrid numbers normal mode / no relative insert mode
-        " autocmd InsertEnter * set number|set norelativenumber
-        " autocmd InsertLeave * set relativenumber
+        autocmd InsertEnter * set number|set norelativenumber
+        autocmd InsertLeave * set relativenumber
 
         " documentor
         autocmd BufRead,BufNewFile *.php nnoremap <buffer> <Leader>ds :call pdv#DocumentWithSnip()<CR>
@@ -204,11 +208,11 @@ source ~/.vim/vimrc_core
         autocmd FileType vim autocmd BufWritePre <buffer> call StripWhitespace('strip_only_space_only_lines')
         autocmd FileType sh autocmd BufWritePre <buffer> call StripWhitespace('all')
         " no wrap and never break line automatically, just show the margin (textwidth). This is default for all files, exceptions below
-        autocmd BufEnter,BufRead,BufNewFile * set nowrap textwidth=120 list formatoptions=l number guifont=Sauce\ Code\ Pro\ 10.5
+        autocmd BufEnter,BufRead,BufNewFile * set nowrap textwidth=120 list formatoptions=l number relativenumber guifont=Sauce\ Code\ Pro\ 10.5
         " wrap lines only on space (linebreak), don't auto break and don't show margin
-        autocmd BufEnter,BufRead,BufNewFile *.markdown set wrap linebreak nolist textwidth=0 nonumber guifont=Latin\ Modern\ Mono\ 12
-        autocmd BufEnter,BufRead,BufNewFile *.md set wrap linebreak nolist textwidth=0 nonumber guifont=Latin\ Modern\ Mono\ 12
-        autocmd BufEnter,BufRead,BufNewFile *.txt set wrap linebreak nolist textwidth=0 nonumber guifont=Latin\ Modern\ Mono\ 12
+        autocmd BufEnter,BufRead,BufNewFile *.markdown set wrap linebreak nolist textwidth=0 nonumber guifont=Sauce\ Code\ Pro\ 10.5
+        autocmd BufEnter,BufRead,BufNewFile *.md set wrap linebreak nolist textwidth=0 nonumber guifont=Sauce\ Code\ Pro\ 10.5
+        autocmd BufEnter,BufRead,BufNewFile *.txt set wrap linebreak nolist textwidth=0 nonumber guifont=Sauce\ Code\ Pro\ 10.5
 
         " For your list of filetypes where you want Eclim semantic completion 
         " as the default YCM completion mode:
@@ -642,7 +646,7 @@ source ~/.vim/vimrc_core
     nnoremap <leader><up> :resize -5<cr>
     nnoremap <leader><right> :vertical resize +10<cr>
 
-    map <C-h> :AgFromSearch<CR>
+    map <C-h> *:AgFromSearch<CR>
 
     " nmap <leader>X :CloseSession<CR>:SaveSession<CR>
 
@@ -744,10 +748,10 @@ let g:expand_region_text_objects = {
 " }
 
 " VIM-SMOOTH-SCROLL
-    noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-    noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-    noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-    noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+    noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 6)<CR>
+    noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 6)<CR>
+    noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 6)<CR>
+    noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 6)<CR>
 " }
 
 " YANK-RING
