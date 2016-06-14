@@ -100,11 +100,6 @@ source ~/.vim/vimrc_core
 
 
     " NORMAL MODE COMMANDS
-    " add indented blank line and leave insert mode
-    nnoremap <A-o> o<esc>
-    nnoremap <A-O> O<esc>
-    inoremap <A-o> <esc>o<esc>
-    inoremap <A-O> <esc>O<esc>
     " set uppercase word (insert/visual/normal)
     inoremap <A-u> <C-O>b<C-O>gUiw<C-O>e<C-O>a
     vmap <A-u> gU
@@ -151,15 +146,15 @@ source ~/.vim/vimrc_core
     " substitute from VERY start of line (unlike cc)
     nmap S 0C
 
+    " add indented blank line and leave insert mode (leaving spaces)
     nnoremap <A-o> o<space><BS><esc>
     nnoremap <A-O> O<space><BS><esc>
     inoremap <A-o> <esc>o<space><BS><esc>
     inoremap <A-O> <esc>O<space><BS><esc>
-
-    " avoid autoclean lines (eclipse-like), and don't save in default register with cc
-    inoremap <CR> <CR><space><BS>
-    " nnoremap cc "_cc<space><BS>
-    " nnoremap C "_C<space><BS>
+    nnoremap o o<space><BS><esc>a
+    nnoremap O O<space><BS><esc>a
+    nnoremap cc cc<space><BS>
+    nnoremap C C<space><BS>
 
     " delete in insert mode (only works in gvim)
     inoremap <C-BS> <delete>
@@ -205,6 +200,8 @@ source ~/.vim/vimrc_core
         autocmd BufRead,BufNewFile *.php nnoremap <buffer> <Leader>ds :call pdv#DocumentWithSnip()<CR>
 
         autocmd FileType php autocmd BufWritePre <buffer> call StripWhitespace('keep_whitespace_only_lines')
+        autocmd FileType *twig autocmd BufWritePre <buffer> call StripWhitespace('keep_whitespace_only_lines')
+        autocmd FileType *js autocmd BufWritePre <buffer> call StripWhitespace('keep_whitespace_only_lines')
         autocmd FileType vim autocmd BufWritePre <buffer> call StripWhitespace('strip_only_space_only_lines')
         autocmd FileType sh autocmd BufWritePre <buffer> call StripWhitespace('all')
         " no wrap and never break line automatically, just show the margin (textwidth). This is default for all files, exceptions below
