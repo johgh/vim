@@ -643,7 +643,8 @@ source ~/.vim/vimrc_core
     nnoremap <leader><up> :resize -5<cr>
     nnoremap <leader><right> :vertical resize +10<cr>
 
-    map <C-h> *:AgFromSearch<CR>
+    map <C-h> :AgFromSearch<CR>
+    vmap <C-h> *:AgFromSearch<CR>
 
     " nmap <leader>X :CloseSession<CR>:SaveSession<CR>
 
