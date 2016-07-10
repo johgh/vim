@@ -78,6 +78,8 @@ Plugin 'terryma/vim-smooth-scroll'
 Plugin 'vim-scripts/YankRing.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons.git'
+Plugin 'rhysd/clever-f.vim.git'
+Plugin 'rhysd/vim-textobj-conflict'
 
 call vundle#end()
 filetype plugin indent on
