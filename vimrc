@@ -662,7 +662,7 @@ source ~/.vim/vimrc_core
     map <C-F12> :e ~/.vim/vimrc<CR>
 
     " save and reload firefox current tab
-    map <leader>f :silent !WID=`xdotool search --name "Mozilla Firefox" \| head -1`; xdotool windowactivate $WID > /dev/null 2>&1 ; xdotool key F5 > /dev/null 2>&1<CR> \ | execute ':redraw!'
+    map <leader>f :w<CR>:silent !WID=`xdotool search --name "Mozilla Firefox" \| head -1`; xdotool windowactivate $WID > /dev/null 2>&1 ; xdotool key F5 > /dev/null 2>&1<CR> \ | execute ':redraw!'
 
     " ignore swap files (backup)
     map <C-S-Del> :! mv ~/.vimswap/* ~/.vimswap/kk > /dev/null 2>&1 &<CR>
@@ -726,11 +726,13 @@ map <A-+> <Plug>(expand_region_shrink)
 "       \ }
 
 let g:expand_region_text_objects = {
-      \ 'iq'  :1,
-      \ 'aq'  :1,
-      \ 'i]'  :1,
-      \ 'ib'  :1,
-      \ 'iB'  :1,
+      \ 'iq' :1,
+      \ 'aq' :1,
+      \ 'ix' :1,
+      \ 'ax' :1,
+      \ 'i]' :1,
+      \ 'ib' :1,
+      \ 'iB' :1,
       \ 'a]' :1,
       \ 'ab' :1,
       \ 'aB' :1,
