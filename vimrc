@@ -428,6 +428,18 @@ source ~/.vim/vimrc_core
 
     " NERDTREE {
         map Q :silent NERDTreeCWD<CR>
+        " open NERDTree if no files specified
+        " autocmd StdinReadPre * let s:std_in=1
+        " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+        let g:NERDTreeDirArrowExpandable = ''
+        let g:NERDTreeDirArrowCollapsible = ''
+        let NERDTreeAutoDeleteBuffer=1
+        let NERDTreeMouseMode=3
+        let NERDTreeShowLineNumbers=0
+        " let NERDTreeShowHidden=1
+        let g:NERDTreeMapJumpNextSibling = 'Ê'
+        let g:NERDTreeMapJumpPrevSibling = 'Ë'
+
     " }
 
     " TAGBAR {
