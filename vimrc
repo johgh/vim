@@ -26,8 +26,8 @@ source ~/.vim/vimrc_core
         else
             set background=dark
         endif
-        " set guifont=Source\ Code\ Pro\ for\ Powerline\ Semi-Bold\ 11
-        set guifont=Sauce\ Code\ Pro\ 10.5
+        " set guifont=Sauce\ Code\ Pro\ 10.5
+        set guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
         " set less linespace is a must for source code pro font
         set lsp=-2
         " hide mouse when typing
@@ -205,11 +205,11 @@ source ~/.vim/vimrc_core
         autocmd FileType vim autocmd BufWritePre <buffer> call StripWhitespace('strip_only_space_only_lines')
         autocmd FileType sh autocmd BufWritePre <buffer> call StripWhitespace('all')
         " no wrap and never break line automatically, just show the margin (textwidth). This is default for all files, exceptions below
-        autocmd BufEnter,BufRead,BufNewFile * set nowrap textwidth=120 list formatoptions=l number relativenumber guifont=Sauce\ Code\ Pro\ 10.5
+        autocmd BufEnter,BufRead,BufNewFile * set nowrap textwidth=120 list formatoptions=l number relativenumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
         " wrap lines only on space (linebreak), don't auto break and don't show margin
-        autocmd BufEnter,BufRead,BufNewFile *.markdown set wrap linebreak nolist textwidth=0 nonumber guifont=Sauce\ Code\ Pro\ 10.5
-        autocmd BufEnter,BufRead,BufNewFile *.md set wrap linebreak nolist textwidth=0 nonumber guifont=Sauce\ Code\ Pro\ 10.5
-        autocmd BufEnter,BufRead,BufNewFile *.txt set wrap linebreak nolist textwidth=0 nonumber guifont=Sauce\ Code\ Pro\ 10.5
+        autocmd BufEnter,BufRead,BufNewFile *.markdown set wrap linebreak nolist textwidth=0 nonumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
+        autocmd BufEnter,BufRead,BufNewFile *.md set wrap linebreak nolist textwidth=0 nonumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
+        autocmd BufEnter,BufRead,BufNewFile *.txt set wrap linebreak nolist textwidth=0 nonumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
 
         " For your list of filetypes where you want Eclim semantic completion 
         " as the default YCM completion mode:
@@ -431,11 +431,17 @@ source ~/.vim/vimrc_core
         " open NERDTree if no files specified
         " autocmd StdinReadPre * let s:std_in=1
         " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-        let g:NERDTreeDirArrowExpandable = ''
-        let g:NERDTreeDirArrowCollapsible = ''
+        " let g:NERDTreeDirArrowExpandable = ''
+        " let g:NERDTreeDirArrowCollapsible = ''
+        let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+        let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+        let g:DevIconsEnableFoldersOpenClose = 1
+        autocmd FileType nerdtree autocmd BufEnter <buffer> setlocal nolist nonumber
+        " let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+
         let NERDTreeAutoDeleteBuffer=1
         let NERDTreeMouseMode=3
-        let NERDTreeShowLineNumbers=0
+        let NERDTreeShowLineNumbers=1
         " let NERDTreeShowHidden=1
         let g:NERDTreeMapJumpNextSibling = 'Ê'
         let g:NERDTreeMapJumpPrevSibling = 'Ë'
