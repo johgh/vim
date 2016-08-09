@@ -427,7 +427,7 @@ source ~/.vim/vimrc_core
     " }
 
     " NERDTREE {
-        map Q :silent NERDTreeCWD<CR>
+        map <silent> Q :silent NERDTreeCWD<CR>:silent setlocal nolist nonumber norelativenumber<CR>
         " open NERDTree if no files specified
         " autocmd StdinReadPre * let s:std_in=1
         " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -436,7 +436,7 @@ source ~/.vim/vimrc_core
         let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
         let g:WebDevIconsUnicodeDecorateFolderNodes = 1
         let g:DevIconsEnableFoldersOpenClose = 1
-        autocmd FileType nerdtree autocmd BufEnter <buffer> setlocal nolist nonumber
+        autocmd FileType nerdtree autocmd BufEnter <buffer> setlocal nolist nonumber norelativenumber
         " let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 
         let NERDTreeAutoDeleteBuffer=1
