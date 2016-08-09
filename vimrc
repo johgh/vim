@@ -55,6 +55,11 @@ source ~/.vim/vimrc_core
     vmap <LeftMouse> <LeftMouse><C-l>
     " vmap <MiddleMouse> <C-n>
 
+    " add motions with a counter to the jump list
+    nnoremap <silent> k :<C-U>execute 'normal!' (v:count > 1 ? "m'" . v:count : '') . 'k'<CR>
+    nnoremap <silent> j :<C-U>execute 'normal!' (v:count > 1 ? "m'" . v:count : '') . 'j'<CR>
+
+
     " CLIPBOARD {
         " unnamed plus register set to default register instead of " register
         set clipboard=unnamedplus
