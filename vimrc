@@ -445,7 +445,9 @@ source ~/.vim/vimrc_core
         " let NERDTreeShowHidden=1
         let g:NERDTreeMapJumpNextSibling = 'Ê'
         let g:NERDTreeMapJumpPrevSibling = 'Ë'
-
+        let g:NERDTreeWinSize=50
+        " autocmd VimEnter * NERDTree autocmd VimEnter * set winfixwidth
+        " now using A mapping => maximizes/minimizes the explorer window
     " }
 
     " TAGBAR {
