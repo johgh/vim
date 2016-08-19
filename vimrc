@@ -190,6 +190,7 @@ source ~/.vim/vimrc_core
 
     " writing
     imap î <C-q>ñ
+    imap ² «
 " }
 
 " AUTOCOMMANDS {
@@ -210,11 +211,11 @@ source ~/.vim/vimrc_core
         autocmd FileType vim autocmd BufWritePre <buffer> call StripWhitespace('strip_only_space_only_lines')
         autocmd FileType sh autocmd BufWritePre <buffer> call StripWhitespace('all')
         " no wrap and never break line automatically, just show the margin (textwidth). This is default for all files, exceptions below
-        autocmd BufEnter,BufRead,BufNewFile * set nowrap textwidth=120 list formatoptions=l number relativenumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
+        autocmd BufEnter,BufRead,BufNewFile * setlocal nowrap textwidth=120 list formatoptions=l number relativenumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
         " wrap lines only on space (linebreak), don't auto break and don't show margin
-        autocmd BufEnter,BufRead,BufNewFile *.markdown set wrap linebreak nolist textwidth=0 nonumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
-        autocmd BufEnter,BufRead,BufNewFile *.md set wrap linebreak nolist textwidth=0 nonumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
-        autocmd BufEnter,BufRead,BufNewFile *.txt set wrap linebreak nolist textwidth=0 nonumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
+        autocmd BufEnter,BufRead,BufNewFile *.markdown setlocal wrap linebreak nolist textwidth=0 nonumber norelativenumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
+        autocmd BufEnter,BufRead,BufNewFile *.md setlocal wrap linebreak nolist textwidth=0 norelativenumber guifont=Courier\ 10\ Pitch\ 14 spell spelllang=es_es
+        autocmd BufEnter,BufRead,BufNewFile *.txt setlocal wrap linebreak nolist textwidth=0 nonumber norelativenumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
 
         " For your list of filetypes where you want Eclim semantic completion 
         " as the default YCM completion mode:
@@ -342,7 +343,7 @@ source ~/.vim/vimrc_core
     " }
 
     " DELIMITMATE {
-        let delimitMate_matchpairs = "(:),[:],<:>"
+        let delimitMate_matchpairs = "(:),[:],<:>,«:»"
         let b:delimitMate_jump_expansion = 1
         " let delimitMate_expand_cr = 1
         let delimitMate_expand_space = 1
@@ -753,6 +754,8 @@ map <A-+> <Plug>(expand_region_shrink)
 let g:expand_region_text_objects = {
       \ 'iq' :1,
       \ 'aq' :1,
+      \ 'im' :1,
+      \ 'am' :1,
       \ 'ix' :1,
       \ 'ax' :1,
       \ 'i]' :1,
@@ -799,6 +802,14 @@ call textobj#user#plugin('twig', {
 \     'pattern': ['%}', '{%'],
 \     'select-a': 'aT',
 \     'select-i': 'iT',
+\   },
+\ })
+
+call textobj#user#plugin('thinkquotes', {
+\   'code': {
+\     'pattern': ['«', '»'],
+\     'select-a': 'am',
+\     'select-i': 'im',
 \   },
 \ })
 

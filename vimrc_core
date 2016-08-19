@@ -201,6 +201,9 @@
     " down, up remapped to next/prev line in wrapped line
     nnoremap <down> g<down>
     nnoremap <up> g<up>
+    " insert mode
+    inoremap <down> <esc>g<down>a
+    inoremap <up> <esc>g<up>a
     " go to last change in file
     nmap - `.
 
