@@ -202,6 +202,9 @@ source ~/.vim/vimrc_core
         autocmd InsertEnter * set number|set norelativenumber
         autocmd InsertLeave * set relativenumber
 
+        autocmd InsertEnter *.md setlocal nonumber|setlocal norelativenumber
+        autocmd InsertLeave *.md  setlocal nonumber|setlocal norelativenumber
+
         " documentor
         autocmd BufRead,BufNewFile *.php nnoremap <buffer> <Leader>ds :call pdv#DocumentWithSnip()<CR>
 
@@ -214,7 +217,7 @@ source ~/.vim/vimrc_core
         autocmd BufEnter,BufRead,BufNewFile * setlocal nowrap textwidth=120 list formatoptions=l number relativenumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
         " wrap lines only on space (linebreak), don't auto break and don't show margin
         autocmd BufEnter,BufRead,BufNewFile *.markdown setlocal wrap linebreak nolist textwidth=0 nonumber norelativenumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
-        autocmd BufEnter,BufRead,BufNewFile *.md setlocal wrap linebreak nolist textwidth=0 norelativenumber guifont=Courier\ 10\ Pitch\ 14 spell spelllang=es_es
+        autocmd BufEnter,BufRead,BufNewFile *.md setlocal wrap linebreak nolist textwidth=0 nonumber norelativenumber guifont=Courier\ 10\ Pitch\ 14 spell spelllang=es_es
         autocmd BufEnter,BufRead,BufNewFile *.txt setlocal wrap linebreak nolist textwidth=0 nonumber norelativenumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
 
         " For your list of filetypes where you want Eclim semantic completion 
@@ -722,7 +725,7 @@ source ~/.vim/vimrc_core
     noremap <A-k> :CtrlSpaceGoUp<CR>
 
     nmap <leader>s :CtrlSpaceSaveWorkspace default<CR>
-    nmap <leader>l :CtrlSpaceLoadWorkspace! default<CR>
+    nmap <leader>l :CtrlSpaceLoadWorkspace! default<CR><C-space>C<CR><C-F11>
     nmap <leader>N :CtrlSpaceNewWorkspace<CR>
 
 " }
