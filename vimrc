@@ -191,6 +191,7 @@ source ~/.vim/vimrc_core
     " writing
     imap î <C-q>ñ
     imap ² «
+    imap ³ »
 " }
 
 " AUTOCOMMANDS {
