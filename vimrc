@@ -198,7 +198,7 @@ source ~/.vim/vimrc_core
     augroup my_group
         autocmd!
         " maximize at startup
-        autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -b add,maximized_vert,maximized_horz")
+        " autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -b add,maximized_vert,maximized_horz")
         " hybrid numbers normal mode / no relative insert mode
         autocmd InsertEnter * set number|set norelativenumber
         autocmd InsertLeave * set relativenumber
@@ -760,8 +760,6 @@ let g:expand_region_text_objects = {
       \ 'aq' :1,
       \ 'im' :1,
       \ 'am' :1,
-      \ 'ix' :1,
-      \ 'ax' :1,
       \ 'i]' :1,
       \ 'ib' :1,
       \ 'iB' :1,
@@ -774,6 +772,10 @@ let g:expand_region_text_objects = {
       \ 'iT' :0,
       \ 'ie' :0,
       \ }
+
+" select xml attribute also select words so cannot be used with expand_region_text_objects:
+      " \ 'ix' :1,
+      " \ 'ax' :1,
 
 " VIM-MULTIPLE-CURSORS
     set selection=inclusive

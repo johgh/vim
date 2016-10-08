@@ -1,6 +1,5 @@
 # current bugs
-- al seleccionar no funciona control + j o k (despl multiple)
-- + selecciona palabras, no debería
+- gitgutter molesta con ficheros .md, workaround, se desactiva
 
 # regexes
 \<WORD\>

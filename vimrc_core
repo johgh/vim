@@ -198,6 +198,8 @@
     " NORMAL MODE NAVIGATION
     nnoremap <C-j> 4j
     nnoremap <C-k> 4k
+    vnoremap <C-j> 4j
+    vnoremap <C-k> 4k
     " down, up remapped to next/prev line in wrapped line
     nnoremap <down> g<down>
     nnoremap <up> g<up>
