@@ -200,12 +200,18 @@
     nnoremap <C-k> 4k
     vnoremap <C-j> 4j
     vnoremap <C-k> 4k
+
     " down, up remapped to next/prev line in wrapped line
-    nnoremap <down> g<down>
-    nnoremap <up> g<up>
-    " insert mode
-    inoremap <down> <esc>g<down>a
-    inoremap <up> <esc>g<up>a
+    map <silent> <Up> gk
+    imap <silent> <Up> <C-o>gk
+    map <silent> <Down> gj
+    imap <silent> <Down> <C-o>gj
+    " home, end remapped to start/end in wrapped line
+    map <silent> <home> g<home>
+    imap <silent> <home> <C-o>g<home>
+    map <silent> <End> g<End>
+    imap <silent> <End> <C-o>g<End>
+
     " go to last change in file
     nmap - `.
 
@@ -215,7 +221,7 @@
     " yank till EOL (not included)
     noremap Y y$
     " indent current paragraph (instead of ex mode)
-    " nnoremap Q =ip
+    nnoremap Q =ip
 
     " repeat last substitution with same flags
     nnoremap & :&&<CR>

@@ -1,44 +1,60 @@
-set nocompatible
-
 " load plugins
-silent! runtime bundles.vim
+source ~/.vim/plug.vim
 
 " core stuff
 source ~/.vim/vimrc_core
 
-" COLORSCHEME/LAYOUT {
-    " GVIM {
-        set guioptions-=T
-        set guioptions-=m
-        " set guioptions+=l
-        " set guioptions-=r
-    " }
+" highlight cursor line
+set cursorline
 
-    " highlight cursor line
-    set cursorline
+imap <a-n> <C-q>ñ
+imap <a-2> «
+imap <a-3> »
 
-    if has('gui_running')
-        colorscheme gruvbox
-        let hour = strftime("%H")
-        if hour >= 8 && hour < 19
-            " set background=light
-            set background=dark
-        else
-            set background=dark
-        endif
-        " set guifont=Sauce\ Code\ Pro\ 10.5
-        set guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
-        " set less linespace is a must for source code pro font
-        set lsp=-2
-        " hide mouse when typing
-        set mousehide
+" cursor line disappears in insert mode
+autocmd InsertEnter,InsertLeave * set cul!
+
+if has('gui_running')
+    inoremap - --
+    set guioptions-=T
+    set guioptions-=m
+    colorscheme gruvbox
+    let hour = strftime("%H")
+    if hour >= 8 && hour < 19
+        " set background=light
+        set background=dark
     else
-        se t_Co=256
-        colorscheme gruvbox
         set background=dark
     endif
+    " set guifont=Sauce\ Code\ Pro\ 10.5
+    set guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
+    " set less linespace is a must for source code pro font
+    set lsp=-2
+    " hide mouse when typing
+    set mousehide
+
+else
+    se t_Co=256
+    colorscheme gruvbox
+    set background=dark
+endif
 
 " }
+
+
+" ENABLE PLUGINS {
+    let g:phpcomplete = 1
+    " let g:phpcomplete_extended = 1
+    " let g:eclim = 1
+
+    " if !exists('g:eclim')
+    "     " disabled by default, so syntastic can work
+    "     let g:EclimFileTypeValidate = 0
+    "     " disable Eclim
+    "     exec ":EclimDisable"
+    " endif
+" }
+
 
 " GENERAL SETTINGS {
     set title
@@ -71,11 +87,12 @@ source ~/.vim/vimrc_core
         " vnoremap p pgvy
 
         " paste correctly indented on same line
-        map <a-P> V<a-p>
+        map <a-s-p> V<a-p>
 
         " don't save in default register when executing a 'c' command
         nnoremap c "_c
         nnoremap C "_C
+        nnoremap x "_x
 
         " paste default register in insert mode and command mode
         inoremap <C-v> <C-r>+
@@ -92,18 +109,6 @@ source ~/.vim/vimrc_core
 " }
 
 " MAPPINGS {
-    " INIT
-    " fix gnome terminal problem with alt keys (a-z only)
-    set esckeys
-    let c='a'
-    while c <= 'z'
-        exec "set <A-".c.">=\e".c
-        exec "imap \e".c." <A-".c.">"
-        let c = nr2char(1+char2nr(c))
-    endw
-    set ttimeout ttimeoutlen=50
-
-
     " NORMAL MODE COMMANDS
     " set uppercase word (insert/visual/normal)
     inoremap <A-u> <C-O>b<C-O>gUiw<C-O>e<C-O>a
@@ -141,7 +146,7 @@ source ~/.vim/vimrc_core
     " Close all other windows
     nmap <silent> <leader>o :only<CR>
     " Close all other windows keeping panes open (eclim util)
-    nmap <silent> <leader>O :Only<CR>
+    " nmap <silent> <leader>O :Only<CR>
     " Close tip window
 
     " Restart Vim
@@ -161,16 +166,12 @@ source ~/.vim/vimrc_core
     nnoremap cc cc<space><BS>
     nnoremap C C<space><BS>
 
-    " delete in insert mode (only works in gvim)
-    inoremap <C-BS> <delete>
-
     " smartwords mappings
-    " noremap ÷ w
-    map ÷ <Plug>(smartword-w)
+    map <s-a-w> <Plug>(smartword-w)
     " noremap â b
-    map â <Plug>(smartword-b)
-    map <silent> × <Plug>CamelCaseMotion_w
-    map <silent> Â <Plug>CamelCaseMotion_b
+    map <s-a-b> <Plug>(smartword-b)
+    map <silent> <a-w> <Plug>CamelCaseMotion_w
+    map <silent> <a-b> <Plug>CamelCaseMotion_b
     " map <Leader><Leader>e <Plug>(smartword-e)
     " map <Leader><Leader>ge <Plug>(smartword-ge)
 
@@ -188,10 +189,7 @@ source ~/.vim/vimrc_core
     " inoremap <C-p> <C-X><C-O>
     imap <C-CR> ->
 
-    " writing
-    imap î <C-q>ñ
-    imap ² «
-    imap ³ »
+
 " }
 
 " AUTOCOMMANDS {
@@ -239,20 +237,6 @@ source ~/.vim/vimrc_core
             silent execute 'bwipeout' buf
         endfor
     endfunction
-
-    " function! GrepProject(...)
-    "     if a:0 > 0
-    "         let @/= '\V' . a:1
-    "     end
-    "     execute 'vimgrep /' . @/ . '/ **'
-    " endfunction
-
-    " function! AgProject(...)
-    "     if a:0 > 0
-    "         let @/= '\V' . a:1
-    "     end
-    "     execute 'AgFromSearch'
-    " endfunction
 
     " Strip whitespace
     function! StripWhitespace(strip_whitespace_mode)
@@ -462,7 +446,7 @@ source ~/.vim/vimrc_core
 
     " TAGBAR {
         " nmap <C-t> :TagbarOpenAutoClose<CR>
-        nmap <C-t> :TagbarOpen fj<CR>
+        nmap <A-s-t> :TagbarOpen fj<CR>
         " go to previous tag on tagbar
         nmap <A-T> :TagbarOpen fj<CR>k<CR>
         " go to next tag on tagbar
@@ -504,29 +488,12 @@ source ~/.vim/vimrc_core
         " let g:syntastic_php_checkers = ["php", "phpcs", "phpmd"]
         " }
 
-    " CTRLP {
-        let g:ctrlp_map = '<c-s-tab>'
-        let g:ctrlp_by_filename = 1
-        map <C-tab> :CtrlPMRU<CR>
-        let g:ctrlp_match_window = 'max:30,results:30'
-
-        " let g:ctrlp_open_multiple_files = 'i'
-        " let g:ctrlp_extensions = ['buffertag', 'changes']
-
-
-        " let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
-
-        " func! MyCtrlPMappings()
-        "     nnoremap <buffer> <silent> <c-_> :call <sid>DeleteBuffer()<cr>
-        " endfunc
-
-        " func! s:DeleteBuffer()
-        "     let line = getline('.')
-        "     let bufid = line =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(line, '\d\+'))
-        "                 \ : fnamemodify(line[2:], ':p')
-        "     exec "bd" bufid
-        "     exec "norm \<F5>"
-        " endfunc
+    " FZF {
+        map <leader>f :FZF<CR>
+        map <leader>h :History<CR>
+        map <leader>b :Buffers<CR>
+        map <leader>l :BLines<CR>
+        map <leader>c :BCommits<CR>
     " }
 
     " FUGITIVE {
@@ -673,8 +640,8 @@ source ~/.vim/vimrc_core
     nnoremap <leader><up> :resize -5<cr>
     nnoremap <leader><right> :vertical resize +10<cr>
 
-    map <C-h> :AgFromSearch<CR>
-    vmap <C-h> *:AgFromSearch<CR>
+    map <C-h> yw<esc>:Ag 0<CR>
+    vmap <C-h> y<esc>:Ag 0<CR>
 
     " nmap <leader>X :CloseSession<CR>:SaveSession<CR>
 
@@ -689,10 +656,10 @@ source ~/.vim/vimrc_core
     map <Leader><F8> :silent %!xmllint --encode UTF-8 --format - <CR>
 
     " opens .vimrc and sets pwd to .vim
-    map <C-F12> :e ~/.vim/vimrc<CR>
+    map <a-F12> :e ~/.vim/vimrc<CR>
 
     " save and reload firefox current tab
-    map <leader>f :w<CR>:silent !WID=`xdotool search --name "Mozilla Firefox" \| head -1`; xdotool windowactivate $WID > /dev/null 2>&1 ; xdotool key F5 > /dev/null 2>&1<CR> \ | execute ':redraw!'
+    " map <leader>f :w<CR>:silent !WID=`xdotool search --name "Mozilla Firefox" \| head -1`; xdotool windowactivate $WID > /dev/null 2>&1 ; xdotool key F5 > /dev/null 2>&1<CR> \ | execute ':redraw!'
 
     " ignore swap files (backup)
     map <C-S-Del> :! mv ~/.vimswap/* ~/.vimswap/kk > /dev/null 2>&1 &<CR>
@@ -709,27 +676,30 @@ source ~/.vim/vimrc_core
     " imap -_ ->
 " }
 
-" CTRL-SPACE
-    if executable("ag") 
-        let g:ctrlspace_glob_command = 'ag -l --nocolor -g ""'
-    endif
+" " CTRL-SPACE
+" if executable("ag") 
+"     let g:ctrlspace_glob_command = 'ag -l --nocolor -g ""'
+" endif
 
-    let g:ctrlspace_save_workspace_on_exit = 1
+" let g:ctrlspace_save_workspace_on_exit = 1
 
-    " nmap <C-space> :CtrlSpace /<CR>
-    nmap <C-S-space> :CtrlSpace a<CR>
-    nmap <S-space> :CtrlSpace *<CR>
+" " nmap <C-space> :CtrlSpace /<CR>
+" nmap <C-S-space> :CtrlSpace a<CR>
+" nmap <S-space> :CtrlSpace *<CR>
 
-    " Move to the next buffer (alphabetically) on current tab
-    noremap <A-j> :CtrlSpaceGoDown<CR>
-    " Move to the previous buffer (alphabetically) on current tab
-    noremap <A-k> :CtrlSpaceGoUp<CR>
+" " Move to the next buffer (alphabetically) on current tab
+" noremap <A-j> :CtrlSpaceGoDown<CR>
+" " Move to the previous buffer (alphabetically) on current tab
+" noremap <A-k> :CtrlSpaceGoUp<CR>
 
-    nmap <leader>s :CtrlSpaceSaveWorkspace default<CR>
-    nmap <leader>l :CtrlSpaceLoadWorkspace! default<CR><C-space>C<CR><C-F11>
-    nmap <leader>N :CtrlSpaceNewWorkspace<CR>
+" nmap <leader>s :CtrlSpaceSaveWorkspace default<CR>
+" " nmap <leader>l :call system("wmctrl -ir " . v:windowid . " -b add,maximized_vert,maximized_horz")<CR>:CtrlSpaceLoadWorkspace! default<CR><C-space>C<CR><C-F11>
+" nmap <leader>l <c-w>v<c-w>v<C-F11><a-right>:e ~/b/BL.md<CR><C-F11><C-F11><c-w>=
+" nmap <F5> ]s
+"     nmap <leader>N :CtrlSpaceNewWorkspace<CR>
 
-" }
+
+" " }
 
 " VIM-ROOTER
     let g:rooter_manual_only = 1
@@ -788,19 +758,97 @@ let g:expand_region_text_objects = {
     noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 6)<CR>
 " }
 
-" YANK-RING
-    nnoremap <silent> <f2> :YRShow<CR>
-    let g:yankring_replace_n_nkey = '<C-Y>'
-    " to allow nnoremap Y y$ mapping
-    let g:yankring_n_keys = 'D x X'
 
-    function! YRRunAfterMaps()
-        " Make Y yank to end of line.
-        nnoremap Y :<C-U>YRYankCount 'y$'<CR>
+" MINIYANK
+    " use g-
+    " map <leader>p <Plug>(miniyank-startput)
+    " map <leader>P <Plug>(miniyank-startPut)
+    map p <Plug>(miniyank-autoput)
+    map P <Plug>(miniyank-autoPut)
 
-        " Don't clobber the yank register when pasting over text in visual mode.
-        vnoremap p :<c-u>YRPaste 'p', 'v'<cr>gv:YRYankRange 'v'<cr>
-    endfunction
+    " cycle through history:
+    map <C-p> <Plug>(miniyank-cycle)
+
+    " paste type
+    " map <Leader>c <Plug>(miniyank-tochar)
+    " map <Leader>l <Plug>(miniyank-toline)
+    " map <Leader>b <Plug>(miniyank-toblock)
+
+    " cycle backwards (g-)
+
+    " persist:
+    " let g:miniyank_filename = $HOME."/.miniyank.mpack"
+
+" }
+
+" " YANK-RING
+"     nnoremap <silent> <f2> :YRShow<CR>
+"     let g:yankring_replace_n_nkey = '<C-Y>'
+"     " to allow nnoremap Y y$ mapping
+"     let g:yankring_n_keys = 'D x X'
+
+"     function! YRRunAfterMaps()
+"         " Make Y yank to end of line.
+"         nnoremap Y :<C-U>YRYankCount 'y$'<CR>
+
+"         " Don't clobber the yank register when pasting over text in visual mode.
+"         vnoremap p :<c-u>YRPaste 'p', 'v'<cr>gv:YRYankRange 'v'<cr>
+"     endfunction
+" " }
+
+" FZF
+    " This is the default extra key bindings
+    let g:fzf_action = {
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-x': 'split',
+    \ 'ctrl-v': 'vsplit' }
+
+    " Default fzf layout
+    " - down / up / left / right
+    let g:fzf_layout = { 'down': '~40%' }
+
+    " In Neovim, you can set up fzf window using a Vim command
+    let g:fzf_layout = { 'window': 'enew' }
+    let g:fzf_layout = { 'window': '-tabnew' }
+
+    " Customize fzf colors to match your color scheme
+    let g:fzf_colors =
+    \ { 'fg':      ['fg', 'Normal'],
+    \ 'bg':      ['bg', 'Normal'],
+    \ 'hl':      ['fg', 'Comment'],
+    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+    \ 'hl+':     ['fg', 'Statement'],
+    \ 'info':    ['fg', 'PreProc'],
+    \ 'prompt':  ['fg', 'Conditional'],
+    \ 'pointer': ['fg', 'Exception'],
+    \ 'marker':  ['fg', 'Keyword'],
+    \ 'spinner': ['fg', 'Label'],
+    \ 'header':  ['fg', 'Comment'] }
+
+    " Enable per-command history.
+    " CTRL-N and CTRL-P will be automatically bound to next-history and
+    " previous-history instead of down and up. If you don't like the change,
+    " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+    let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+    " [Files] Extra options for fzf
+    "   e.g. File preview using Highlight
+    "        (http://www.andre-simon.de/doku/highlight/en/highlight.html)
+    let g:fzf_files_options =
+    \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+
+    " [Buffers] Jump to the existing window if possible
+    let g:fzf_buffers_jump = 1
+
+    " [[B]Commits] Customize the options used by 'git log':
+    let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+    " [Tags] Command to generate tags file
+    let g:fzf_tags_command = 'ctags -R'
+
+    " [Commands] --expect expression for directly executing the command
+    let g:fzf_commands_expect = 'ctrl-x'
 " }
 
 call textobj#user#plugin('twig', {
