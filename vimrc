@@ -7,6 +7,9 @@ source ~/.vim/vimrc_core
 " highlight cursor line
 set cursorline
 
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+inoremap - --
 imap <a-n> <C-q>ñ
 imap <a-2> «
 imap <a-3> »
@@ -15,7 +18,6 @@ imap <a-3> »
 autocmd InsertEnter,InsertLeave * set cul!
 
 if has('gui_running')
-    inoremap - --
     set guioptions-=T
     set guioptions-=m
     colorscheme gruvbox
@@ -65,11 +67,10 @@ endif
 
     syntax enable
     set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-    nmap <RightMouse> <LeftMouse>"uyiwh/u<CR>
-    vmap <RightMouse> *N
+    nmap <MiddleMouse> <LeftMouse>yiwh/0<CR>
+    vmap <MiddleMouse> *N
     nmap <LeftMouse> <LeftMouse><C-l>
     vmap <LeftMouse> <LeftMouse><C-l>
-    " vmap <MiddleMouse> <C-n>
 
     " add motions with a counter to the jump list
     nnoremap <silent> k :<C-U>execute 'normal!' (v:count > 1 ? "m'" . v:count : '') . 'k'<CR>
@@ -216,7 +217,7 @@ endif
         autocmd BufEnter,BufRead,BufNewFile * setlocal nowrap textwidth=120 list formatoptions=l number relativenumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
         " wrap lines only on space (linebreak), don't auto break and don't show margin
         autocmd BufEnter,BufRead,BufNewFile *.markdown setlocal wrap linebreak nolist textwidth=0 nonumber norelativenumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
-        autocmd BufEnter,BufRead,BufNewFile *.md setlocal wrap linebreak nolist textwidth=0 nonumber norelativenumber guifont=Courier\ 10\ Pitch\ 14 spell spelllang=es_es
+        autocmd BufEnter,BufRead,BufNewFile *.md setlocal wrap linebreak nolist textwidth=0 nonumber norelativenumber guifont=Courier\ 10\ Pitch\ 14 spell spelllang=es_es|GitGutterDisable
         autocmd BufEnter,BufRead,BufNewFile *.txt setlocal wrap linebreak nolist textwidth=0 nonumber norelativenumber guifont=SauceCodePro\ Nerd\ Font\ Medium\ 10.5
 
         " For your list of filetypes where you want Eclim semantic completion 
@@ -702,7 +703,7 @@ endif
 " " }
 
 " VIM-ROOTER
-    let g:rooter_manual_only = 1
+    " let g:rooter_manual_only = 1
     " let g:rooter_use_lcd = 1
 " }
 
