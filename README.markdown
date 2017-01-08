@@ -63,18 +63,12 @@ ln -s $HOME/.vim/.vimrc .
 
 # Additional steps for manual installation
 
-## Vim 7.4.X Installation (Required By YCM plugin for "silent" completion)
+## Fzf installation (required by plugin fzf.vim)
 ```
-# purge current vim version (if any)
-sudo apt-get purge vim-*
-
-# add this repo
-echo 'deb http://ppa.launchpad.net/pkg-vim/vim-daily/ubuntu UBUNTU_VERSION_HERE main' | sudo tee -a  /etc/apt/sources.list
-# or this other one
-echo 'deb http://ppa.launchpad.net/pi-rho/dev/ubuntu UBUNTU_VERSION_HERE main' | sudo tee -a  /etc/apt/sources.list
-
-# update and install gvim
-sudo apt-get update && sudo apt-get install vim vim-gnome
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+# include in .zshrc, for terminal completion:
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ```
 
 ## Install the "silversearcher" (required by Ag plugin)
@@ -102,6 +96,20 @@ cp -R ~/.vim/fonts/* ~/.local/share/fonts
 fc-cache -f ~/.local/share/fonts
 ```
 
+## Vim 7.4.X Installation (Required By YCM plugin for "silent" completion)
+```
+# purge current vim version (if any)
+sudo apt-get purge vim-*
+
+# add this repo
+echo 'deb http://ppa.launchpad.net/pkg-vim/vim-daily/ubuntu UBUNTU_VERSION_HERE main' | sudo tee -a  /etc/apt/sources.list
+# or this other one
+echo 'deb http://ppa.launchpad.net/pi-rho/dev/ubuntu UBUNTU_VERSION_HERE main' | sudo tee -a  /etc/apt/sources.list
+
+# update and install gvim
+sudo apt-get update && sudo apt-get install vim vim-gnome
+```
+
 ## Ycm Plugin Installation
 ```
 # Vim 7.3.584 with python2 support required
@@ -119,7 +127,7 @@ $HOME/.vim/bundle/YouCompleteMe/install.sh
 sudo apt-get install wmctrl
 ```
 
-## OLD bundles management (with Git and Pathogen)
+## Bundles management (with Pathogen) => NOW USING VIM-PLUG
 
 ### Setup Pathogen
 ```
