@@ -1,6 +1,5 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'VundleVim/Vundle.vim'
 Plug 'bkad/CamelCaseMotion'
 Plug 'evidens/vim-twig'
 Plug 'MarcWeber/vim-addon-mw-utils'
