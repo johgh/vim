@@ -1,5 +1,5 @@
 # current bugs
-- gitgutter molesta con ficheros .md, workaround, se desactiva
+- pegar a veces no pega con 'p' , desde modo insertar si va
 
 # regexes
 \<WORD\>
