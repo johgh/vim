@@ -61,7 +61,7 @@ Plug 'vim-scripts/vimprj'
 " Plug 'szw/vim-ctrlspace'
 " Plug 'vim-scripts/mru.vim'
 Plug 'bling/vim-airline'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Plug 'm2mdas/phpcomplete-extended'
 " Plug 'm2mdas/phpcomplete-extended-symfony'
 " Plug 'ctrlpvim/ctrlp.vim'
@@ -78,6 +78,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'bfredl/nvim-miniyank'
 Plug 'junegunn/vim-peekaboo'
+Plug 'jlanzarotta/bufexplorer'
 
 " Initialize plugin system
 call plug#end()

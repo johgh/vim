@@ -13,6 +13,7 @@ inoremap - --
 imap <a-n> <C-q>ñ
 imap <a-2> «
 imap <a-3> »
+nmap <F5> ]s
 
 " cursor line disappears in insert mode
 autocmd InsertEnter,InsertLeave * set cul!
@@ -84,16 +85,13 @@ endif
         " :Gstatus uses the preview window
         set previewheight=20
 
-        " paste yanked text multiple times in visual mode (trick lost -> exchange) problem with yankring, replaced by YRRunAfterMaps function
-        " vnoremap p pgvy
-
         " paste correctly indented on same line
         map <a-s-p> V<a-p>
 
-        " don't save in default register when executing a 'c' command
-        nnoremap c "_c
-        nnoremap C "_C
-        nnoremap x "_x
+        " don't save in default register when executing an auto yank command
+        "nnoremap c "_c
+        "nnoremap C "_C
+        "nnoremap x "_x
 
         " paste default register in insert mode and command mode
         inoremap <C-v> <C-r>+
@@ -402,7 +400,9 @@ endif
         " let g:airline#extensions#eclim#enabled = 1
         " let g:airline#extensions#tmuxline#enabled = 1
         let g:airline#extensions#tagbar#enabled = 1
-        let g:airline#extensions#tabline#show_buffers = 0
+        let g:airline#extensions#tabline#buffer_min_count =2
+        let g:airline#extensions#tabline#show_tabs = 0
+        " let g:airline#extensions#tabline#show_buffers = 1
         let g:airline_exclude_preview = 1
         let g:airline#extensions#whitespace#checks = ['']
         let g:airline#extensions#whitespace#enabled = 0
@@ -410,15 +410,15 @@ endif
         let g:airline#extensions#tabline#show_tab_nr = 1
         let g:airline#extensions#tabline#buffer_idx_mode = 1
         let g:airline#extensions#hunks#enabled = 1
-        " map <leader>1 <Plug>AirlineSelectTab1
-        " map <leader>2 <Plug>AirlineSelectTab2
-        " map <leader>3 <Plug>AirlineSelectTab3
-        " map <leader>4 <Plug>AirlineSelectTab4
-        " map <leader>5 <Plug>AirlineSelectTab5
-        " map <leader>6 <Plug>AirlineSelectTab6
-        " map <leader>7 <Plug>AirlineSelectTab7
-        " map <leader>8 <Plug>AirlineSelectTab8
-        " map <leader>9 <Plug>AirlineSelectTab9
+        map <leader>1 <Plug>AirlineSelectTab1
+        map <leader>2 <Plug>AirlineSelectTab2
+        map <leader>3 <Plug>AirlineSelectTab3
+        map <leader>4 <Plug>AirlineSelectTab4
+        map <leader>5 <Plug>AirlineSelectTab5
+        map <leader>6 <Plug>AirlineSelectTab6
+        map <leader>7 <Plug>AirlineSelectTab7
+        map <leader>8 <Plug>AirlineSelectTab8
+        map <leader>9 <Plug>AirlineSelectTab9
     " }
 
     " NERDTREE {
@@ -489,19 +489,35 @@ endif
         " let g:syntastic_php_checkers = ["php", "phpcs", "phpmd"]
         " }
 
-    " FZF {
-        map <leader>f :FZF<CR>
-        map <leader>h :History<CR>
-        map <leader>b :Buffers<CR>
-        map <leader>l :BLines<CR>
-        map <leader>c :BCommits<CR>
+    " BUFFEXPLORER {
+        " useful maps: T (show buffers from all tabs), u (show hidden buffers), s/S (sort buffers), d (delete buffer), ? (help), q (quit)
+        map <leader>? <f1>
+        " nnoremap <silent> <leader>b :BufExplorerHorizontalSplit<CR>
+        nnoremap <silent> <leader>b :BufExplorer<CR>
+        let g:bufExplorerShowTabBuffer=1       " Yes.
+        " let g:bufExplorerDefaultHelp=1       " Show default help.
+        " let g:bufExplorerDetailedHelp=1      " Show detailed help.
+        let g:bufExplorerShowNoName=1          " Do not show No Name buffers.
+        " let g:bufExplorerSortBy='fullpath'   " Sort by full file path name.
+        let g:bufExplorerDisableDefaultKeyMapping=1    " Disable mapping.
+         let g:bufExplorerSplitBelow=1        " Split new window below current.
+        let g:bufExplorerSplitOutPathName=0  " Don't split the path and file
+        let g:bufExplorerFindActive=0        " Do not go to active window.
+        let g:bufExplorerShowRelativePath=1  " Show relative paths.
+        " let g:bufExplorerChgWin=1  " Show relative paths.
+        " Move to the next buffer
+        noremap <A-j> :bnext<CR>
+        " Move to the previous buffer
+        noremap <A-k> :bprev<CR>
     " }
+
 
     " FUGITIVE {
         set diffopt+=vertical
         nnoremap <F7> :only<CR>:Gstatus<CR>
         nnoremap <F8> :only<CR>:Gdiff<CR>
         nnoremap <F9> :only<CR>:Gedit HEAD~0<CR>
+        nnoremap <F10> :only<CR>:Glog -- %<CR>
         autocmd BufReadPost fugitive://* set bufhidden=delete
         nnoremap <C-F7> :!~/bin/ansbot '*?assword*' "$GIT_PASS" ''/usr/bin/git r''<CR>
         nnoremap <C-F8> :!~/bin/ansbot '*?assword*' "$GIT_PASS" ''/usr/bin/git p''<CR>
@@ -515,7 +531,7 @@ endif
     " }
 
     " GUNDO {
-        nnoremap <F5> :GundoToggle<CR>
+        " nnoremap <F5> :GundoToggle<CR>
     " }
 
     " TEXTOBJ_FUNC {
@@ -590,8 +606,9 @@ endif
     " }
 
     " VIMPASTA {
-        " let g:pasta_paste_before_mapping = '<a-P>'
+        let g:pasta_paste_before_mapping = '<nop>'
         let g:pasta_paste_after_mapping = '<a-p>'
+        " let g:pasta_paste_after_mapping = '<nop>'
     " }
 
     " PHPMANUAL
@@ -760,12 +777,21 @@ let g:expand_region_text_objects = {
 " }
 
 
+" GITGUTTER
+    let g:gitgutter_map_keys = 0
+" }
+
+
 " MINIYANK
     " use g-
     " map <leader>p <Plug>(miniyank-startput)
     " map <leader>P <Plug>(miniyank-startPut)
     map p <Plug>(miniyank-autoput)
     map P <Plug>(miniyank-autoPut)
+
+    " paste yanked text multiple times in visual mode (this should be JUST here to override map p)
+    " NOTE!!: to do the 'replace trick' or to use miniyank, use 'P' instead of 'p'
+    vmap p pgvy
 
     " cycle through history:
     map <C-p> <Plug>(miniyank-cycle)
@@ -797,7 +823,13 @@ let g:expand_region_text_objects = {
 "     endfunction
 " " }
 
-" FZF
+" FZF {
+    map <leader>f :FZF<CR>
+    map <leader>h :History<CR>
+    " map <leader>b :Buffers<CR>
+    map <leader>l :BLines<CR>
+    map <leader>c :BCommits<CR>
+
     " This is the default extra key bindings
     let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
@@ -867,6 +899,10 @@ call textobj#user#plugin('thinkquotes', {
 \     'select-i': 'im',
 \   },
 \ })
+
+" use this for mapping debug purposes!!!!!!!!!!!!!!
+" :verbose noremap <leader>b
+
 
 " enable debug mode
 " set vbs=1

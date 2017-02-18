@@ -236,7 +236,9 @@
     cnoremap <expr> ~ getcmdtype() == ':' ? expand('~').'/' : '~'
 
     " COMMAND LINE DISPLAY
-    set shortmess=aItA
+    " set shortmess=aItA
+    " see :help shortmess to know message prompts that are supressed
+    set shortmess=aoOtIA
 " }
 
 " AUTOCOMMANDS {
