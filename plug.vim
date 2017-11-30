@@ -55,9 +55,12 @@ Plug 'ap/vim-css-color'
 Plug 'junegunn/vim-easy-align'
 Plug 'rking/ag.vim'
 Plug 'sickill/vim-pasta'
+" Plug 'c0r73x/neotags.nvim'
+
 Plug 'vim-scripts/indexer.tar.gz'
 Plug 'vim-scripts/DfrankUtil'
 Plug 'vim-scripts/vimprj'
+
 " Plug 'szw/vim-ctrlspace'
 " Plug 'vim-scripts/mru.vim'
 Plug 'bling/vim-airline'

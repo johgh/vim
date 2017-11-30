@@ -558,7 +558,8 @@ endif
     " }
 
     " INDEXER/TAGS {
-        let g:indexer_disableCtagsWarning=1
+        " let g:indexer_disableCtagsWarning=1
+        let g:indexer_indexerListFilename= $HOME ."/.vim/indexer/.indexer_files"
     " }
 
 
