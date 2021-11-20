@@ -82,6 +82,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'bfredl/nvim-miniyank'
 Plug 'junegunn/vim-peekaboo'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'lambdalisue/suda.vim'
 
 " Initialize plugin system
 call plug#end()

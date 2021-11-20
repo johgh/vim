@@ -514,10 +514,10 @@ endif
 
     " FUGITIVE {
         set diffopt+=vertical
-        nnoremap <F7> :only<CR>:Gstatus<CR>
+        nnoremap <F7> :only<CR>:Git<CR>
         nnoremap <F8> :only<CR>:Gdiff<CR>
         nnoremap <F9> :only<CR>:Gedit HEAD~0<CR>
-        nnoremap <F10> :only<CR>:Glog -- %<CR>
+        nnoremap <F10> :only<CR>:Gclog -- %<CR>
         autocmd BufReadPost fugitive://* set bufhidden=delete
         nnoremap <C-F7> :!~/bin/ansbot '*?assword*' "$GIT_PASS" ''/usr/bin/git r''<CR>
         nnoremap <C-F8> :!~/bin/ansbot '*?assword*' "$GIT_PASS" ''/usr/bin/git p''<CR>
@@ -721,8 +721,8 @@ endif
 " " }
 
 " VIM-ROOTER
-    " let g:rooter_manual_only = 1
-    " let g:rooter_use_lcd = 1
+    let g:rooter_manual_only = 1
+    let g:rooter_cd_cmd = 'lcd'
 " }
 
 
